@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "tingate";
+$password = "tingate200";
 $dbname = "userlogindetails";
 
 
@@ -24,6 +24,8 @@ VALUES ($username, $password, $email)";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
+	 header('Location: http://engprodigy.github.io/landingpage.html'); 
+
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
