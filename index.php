@@ -3,14 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "tingate200";
-$dbname = "userlogindetails";
-
-
-$username = $_POST["inputUsername"];
-$email = $_POST["inputEmail"];
-$password = $_POST["inputPassword"];
-
-
+$dbname = "codulab_test";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,19 +12,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
+if(isset($_POST['entrysubmit'])){
+$username = $_POST["inputUsername"];
+$email = $_POST["inputEmail"];
+$password = $_POST["inputPassword"];
+
+
+
 $sql = "INSERT INTO userlogindetails (UserName, Password, EmailAddress)
-VALUES ($username, $password, $email)";
+VALUES ('$username', '$password', '$email')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
-	 header('Location: http://engprodigy.github.io/landingpage.html'); 
+	 header('Location: http://localhost/engprodigy.github.io/landingpage.html'); 
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 $conn->close();
-
+}
 
 ?>
 
@@ -113,7 +113,7 @@ $conn->close();
         <p>&nbsp;&nbsp;&nbsp;Become a rockstar programmer today</p>
       
 
-      <form class="form-signin" action="welcome.php" method="post">
+      <form class="form-signin" action="index.php" method="post">
         <h2 class="form-signin-heading">Sign up and start coding in seconds </h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -126,7 +126,7 @@ $conn->close();
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <button class="btn btn-lg btn-primary btn-block" name="entrysubmit" type="submit">Sign up</button>
       </form>
       </div>
       
